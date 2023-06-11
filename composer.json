@@ -16,7 +16,7 @@
     },
     "autoload": {
         "psr-4": {
-            "Emma\\Di\\": "Src/"
+            "Emma\\Http\\": "Src/"
         }
     },
     "require-dev": {
