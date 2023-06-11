@@ -20,7 +20,8 @@
         }
     },
     "require-dev": {
-		"emma/common": "^1.0.0"
+		"emma/common": "^1.0.0",
+        "emma/di": "^1.2.0"
 	},
     "license": "GPL-2.0-only"
 }
