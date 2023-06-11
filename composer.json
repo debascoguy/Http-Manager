@@ -1,6 +1,6 @@
 {
-    "name": "emma/di",
-    "description": "A PHP 8.0+ Attributes based Routing. Can be used for all cases, MVC and Middleware -  Class/Method/Function",
+    "name": "emma/http-manager",
+    "description": "A PHP 8.0+ Attributes based Http Routing. Can be used for all cases, MVC and Middleware -  Class/Method/Function",
     "authors": [
         {
             "name": "Ademola Aina",

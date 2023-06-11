@@ -1,5 +1,5 @@
 # Http-Manager
- php 8 Attributes based Routing. Can be used for all cases, MVC and Middleware -  Class/Method/Function
+ php 8 Attributes based Http Routing. Can be used for all cases, MVC and Middleware -  Class/Method/Function
 
 
 *** QUICK HOW TO:
