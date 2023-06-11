@@ -1,11 +1,3 @@
-# Http-Manager
- php 8 Attributes based Routing. Can be used for all cases, MVC and Middleware -  Class/Method/Function
-
-
-*** QUICK HOW TO:
-===================
-
-```
 <?php
 
 include dirname(__DIR__, 2) . DIRECTORY_SEPARATOR . "autoloader.php"; //composer autoloader
@@ -63,24 +55,20 @@ class IndexController
 
 /**
  * REGISTER ALL ROUTES HANDLERS IN :  ./Definition/Config.php
- * ===========================================
+ * ===========================================================
  * 
  * @return array 
- * Register your Controllers, classes and/or Middleware and/or Functions here...
-
-    use \Emma\Http\Mappings\PatchMapping;
-
+ * Register your Controllers class and/or Middleware and/or Functions here...
     return [
         IndexController::class,
 
         ...
 
-//example: Adding your function directly to the array.  
+        //example: Adding your function directly to the array.  
 
-        #[PatchMapping('/update/summary/{id:[0-9]*}')]
-        function middlewareQuickPatch(): void {
-            $result = ['status' => true, 'data' => 'ABCD'];
-            die(json_encode($result));
+        #[\Emma\Http\Mappings\PatchMapping('/update/summary/{id:[0-9]*}')]
+        function middlewareQuickPatchById(): void {
+            
         },
     ];
 
@@ -113,8 +101,6 @@ try {
     $route = $testHttpManager->boot()->matchRequestRoutes();
 
     var_dump($route);
-
-    /** Feel free to use \Emma\Di\Autowire */
 
 } catch (Exception $e) {
 
