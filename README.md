@@ -114,7 +114,7 @@ try {
 
     var_dump($route);
 
-    /** Feel free to use \Emma\Di\Autowire */
+    /** Feel free to use https://github.com/debascoguy/Di For Autowiring your classes/Methods/Function  */
 
 } catch (Exception $e) {
 
