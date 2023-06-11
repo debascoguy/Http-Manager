@@ -114,7 +114,7 @@ try {
 
     var_dump($route);
 
-    /** Feel free to use https://github.com/debascoguy/Di For Autowiring your classes/Methods/Function  */
+    /** Feel free to use https://github.com/debascoguy/Di For Autowiring(that is, Injecting) your classes/Methods/Function Dependencies... */
 
 } catch (Exception $e) {
 
