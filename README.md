@@ -124,7 +124,7 @@ RewriteCond %{REQUEST_FILENAME} !-f
 RewriteRule ^(.*)$ app.php [QSA,L]
 ```
 
-Let's test
+Let's test - index.php file inside the same folder as your .htaccess
 ```
 <?php
 
@@ -144,3 +144,5 @@ try {
 }
 
 ```
+
+** Feel free to use https://github.com/debascoguy/Di For Autowiring (that is, Inject) your classes/Methods/Function Dependencies...
