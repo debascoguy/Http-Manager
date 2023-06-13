@@ -39,35 +39,11 @@ class RouteMatcher implements RouteMatcherInterface
                         if (strpos($m, ":") !== false) {
                             $temp = explode(":", $m);
                             $callBackParams[$temp[0]] = null;
-                            $regex = str_replace(
-                                [
-                                    "[/{".$m."}]", //optional param
-                                    "[{".$m."}]", //optional param
-                                    "{".$m."}",
-                                ],
-                                [
-                                    "(/".$temp[1].")?",
-                                    "(".$temp[1].")?",
-                                    "(".$temp[1].")",
-                                ],
-                                $regex
-                            );
+                            $regex = $this->formatRouteNamedParameter($m, $regex, $temp[1]);
                         }
                         else {
                             $callBackParams[$m] = null;
-                            $regex = str_replace(
-                                [
-                                    "[/{".$m."}]", //optional param
-                                    "[{".$m."}]", //optional param
-                                    "{".$m."}",
-                                ],
-                                [
-                                    "(/(.+))?",
-                                    "(.+)?",
-                                    "(.+)",
-                                ],
-                                $regex
-                            );
+                            $regex = $this->formatRouteParameter($m, $regex);
                         }
                     }
                 }
@@ -79,16 +55,84 @@ class RouteMatcher implements RouteMatcherInterface
                     }
                 }
 
-                $regex = str_replace('/', '\/', $regex); //Escape /
+                $regex = $this->escapeRouteRegex($regex);
                 $is_match = preg_match('/^' . ($regex) . '$/', $params, $matches);
                 if ($is_match) {
                     $matchedRoute = array_shift($matches);
+                    $matches = $this->cleanParams($matches);
                     $callBackParams = array_combine(array_keys($callBackParams), $matches);
                     return new Route($matchedRoute, $matchedRegex, $fn, $callBackParams);
                 }
             }
         }
         return null;
+    }
+
+    /**
+     * @param string $routePart
+     * @param string $regex
+     * @param string $paramName
+     * @return array|string|string[]
+     */
+    private function formatRouteNamedParameter(string $routePart, string $regex, string $paramName)
+    {
+        return str_replace(
+            [
+                "[/{".$routePart."}]", //optional param
+                "[{".$routePart."}]", //optional param
+                "{".$routePart."}",
+            ],
+            [
+                "(/".$paramName.")?",
+                "(".$paramName.")?",
+                "(".$paramName.")",
+            ],
+            $regex
+        );
+    }
+
+    /**
+     * @param string $routePart
+     * @param string $regex
+     * @return array|string|string[]
+     */
+    private function formatRouteParameter(string $routePart, string $regex)
+    {
+        return str_replace(
+                [
+                    "[/{".$routePart."}]", //optional param
+                    "[{".$routePart."}]", //optional param
+                    "{".$routePart."}",
+                ],
+                [
+                    "(/(.+))?",
+                    "(.+)?",
+                    "(.+)",
+                ],
+                $regex
+            );
+    }
+
+    /**
+     * @param array $matches
+     * @return array
+     */
+    public function cleanParams(array $matches): array
+    {
+        array_walk($matches, function (&$m) {
+            $m = trim(stripslashes($m), '/');
+        });
+        return $matches;
+    }
+
+    /**
+     * @param string $regex
+     * @return string
+     * Escape '/'
+     */
+    private function escapeRouteRegex(string $regex): string
+    {
+        return str_replace('/', '\/', $regex);
     }
 
 }
