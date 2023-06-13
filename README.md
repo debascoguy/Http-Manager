@@ -2,7 +2,7 @@
  php 8 Attributes based Http Routing. Can be used for all cases, MVC and Middleware -  Class/Method/Function
 
 
-*** QUICK HOW TO:
+# QUICK HOW TO:
 ===================
 
 ```
@@ -60,7 +60,11 @@ class IndexController
     */
 
 }
+```
 
+Make sure to Register all routes:
+
+```
 /**
  * REGISTER ALL ROUTES HANDLERS IN :  ./Definition/Config.php
  * ===========================================
@@ -107,6 +111,23 @@ class IndexController
 // <!-- URL front entry point...Assuming you already setup your .htaccess as needed. 
 // This service is independent of .htaccess. -->
 
+```
+Be sure to also have your .htaccess file well set as this package is framework agnostic.
+
+Here is a sample .htaccess file:
+
+```
+RewriteEngine On
+RewriteCond %{HTTP:Authorization} ^(.+)$
+RewriteRule .* - [E=HTTP_AUTHORIZATION:%{HTTP:Authorization}]
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteRule ^(.*)$ app.php [QSA,L]
+```
+
+Let's test
+```
+<?php
+
 $testHttpManager = new \Emma\Http\HttpManager();
 
 try {
@@ -122,3 +143,4 @@ try {
 
 }
 
+```
