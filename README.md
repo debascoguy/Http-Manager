@@ -62,24 +62,23 @@ class IndexController
 }
 ```
 
-Make sure to Register all routes:
-
+ ### REGISTER ALL ROUTES HANDLERS USING THE SINGLETON - RouteRegistry.php
+ 
 ```
 /**
- * REGISTER ALL ROUTES HANDLERS IN :  ./Definition/Config.php
- * ===========================================
+
  * 
  * @return array 
  * Register your Controllers, classes and/or Middleware and/or Functions here...
 
     use \Emma\Http\Mappings\PatchMapping;
 
-    return [
+    $routables = [
         IndexController::class,
 
         ...
 
-//example: Adding your function directly to the array.  
+        //example: Adding your function directly to the array.  
 
         #[PatchMapping('/update/summary/{id:[0-9]*}')]
         function middlewareQuickPatch(): void {
@@ -88,14 +87,20 @@ Make sure to Register all routes:
         },
     ];
 
+    RouteRegistry::getInstance()->setRoutables($routables); //Register ALL
+
+    
+
  *    ADVANCED USERS can have there arrays of functions and/or classes in different file and includes those file with array_merge()
  *    For Example:
  
-    return array_merge(
+    $routables = array_merge(
         (array) include "directory_to_array_file/class_file.php",
         (array) include "directory_to_array_file/direct_method_file.php",
         (array) include "directory_to_array_file/functions_file.php",
     );
+
+    RouteRegistry::getInstance()->setRoutables($routables);  //Register ALL
 
 * THEN, class_file.php:
 * =====================
@@ -108,10 +113,16 @@ Make sure to Register all routes:
  */
 
 
+
+
 // <!-- URL front entry point...Assuming you already setup your .htaccess as needed. 
 // This service is independent of .htaccess. -->
 
 ```
+### YOU CAN REGISTER SINGLE ROUTABLE AT A TIME USING THE: 
+#### RouteRegistry::getInstance()->register($classOrFunctionOrObject);
+
+
 Be sure to also have your .htaccess file well set as this package is framework agnostic.
 
 Here is a sample .htaccess file:

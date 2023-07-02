@@ -3,14 +3,14 @@
 namespace Emma\Http\Router\PathFinder;
 
 use Emma\Di\Container\ContainerManager;
-use Emma\Http\Definition\DefinitionLoader;
+use Emma\Http\RouteRegistry;
 use Emma\Http\Router\Interfaces\PathFinderInterface;
 
 class PathFinder implements PathFinderInterface
 {
     use ContainerManager;
 
-    protected array $routeDefinitions = [];
+    protected ?RouteRegistry $routeRegistry = null;
 
     /**
      * @var PathFinderFactory|null
@@ -34,7 +34,6 @@ class PathFinder implements PathFinderInterface
 
     public function __construct()
     {
-        $this->routeDefinitions = $this->getContainer()->get(DefinitionLoader::class)->get();
         /** @var PathFinderFactory $factory */
         $factory = $this->getContainer()->create(PathFinderFactory::class);
         $this->scanClassFactory = $factory;
@@ -64,7 +63,11 @@ class PathFinder implements PathFinderInterface
     public function run(object|string $objectOrClass = null): void
     {
         $this->make();
-        foreach($this->routeDefinitions as $routable) {
+        if (is_null($this->routeRegistry)) {
+            $this->routeRegistry = $this->getContainer()->get(RouteRegistry::class);
+        }
+        $registry = $this->routeRegistry->getRegistryContainer();
+        foreach($registry as $routable) {
             if (class_exists($routable)) {
                 $this->scanClassFactory->run($routable);
             }
