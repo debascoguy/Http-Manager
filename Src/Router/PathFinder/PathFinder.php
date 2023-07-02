@@ -66,7 +66,7 @@ class PathFinder implements PathFinderInterface
         if (is_null($this->routeRegistry)) {
             $this->routeRegistry = $this->getContainer()->get(RouteRegistry::class);
         }
-        $registry = $this->routeRegistry->getRegistryContainer();
+        $registry = $this->routeRegistry->getRoutables();
         foreach($registry as $routable) {
             if (class_exists($routable)) {
                 $this->scanClassFactory->run($routable);
