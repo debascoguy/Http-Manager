@@ -4,6 +4,7 @@ namespace Emma\Http\Request;
 
 use Emma\Di\Container\ContainerManager;
 use Emma\Common\Factory\AbstractFactory;
+use Emma\Http\Request\Containers\CookieContainer;
 use Emma\Http\Request\Containers\HttpContainer;
 use Emma\Http\Request\Containers\ServerContainer;
 
@@ -70,6 +71,16 @@ class RequestFactory extends AbstractFactory implements RequestInterface
     public function getServer(): ServerContainer|HttpContainer|array
     {
         return $this->getRequest()->getServer();
+    }
+
+    public function getCookies(): CookieContainer|array
+    {
+        return $this->getRequest()->getCookies();
+    }
+
+    public function setCookies(array|CookieContainer $cookies): static
+    {
+        return $this->getRequest()->setCookies($cookies);
     }
 
     public function setHeader(string $name, string $value, bool $replace = false): void

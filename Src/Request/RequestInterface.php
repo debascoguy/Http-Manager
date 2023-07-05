@@ -2,6 +2,7 @@
 
 namespace Emma\Http\Request;
 
+use Emma\Http\Request\Containers\CookieContainer;
 use Emma\Http\Request\Containers\HttpContainer;
 use Emma\Http\Request\Containers\ServerContainer;
 
@@ -15,8 +16,11 @@ interface RequestInterface
 
     public function getQuery(): HttpContainer|array;
 
+    public function getCookies(): CookieContainer|array;
 
     public function getServer(): ServerContainer|HttpContainer|array;
+
+    public function setCookies(array|CookieContainer $cookies): static;
 
     public function setHeader(string $name, string $value, bool $replace = false): void;
 

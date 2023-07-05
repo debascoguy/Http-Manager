@@ -247,7 +247,7 @@ class Request implements SingletonInterface, RequestInterface
     /**
      * @return HttpContainer|array|CookieContainer
      */
-    public function getCookies(): HttpContainer|array|CookieContainer
+    public function getCookies(): CookieContainer|array
     {
         return $this->cookies;
     }
