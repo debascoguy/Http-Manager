@@ -20,18 +20,23 @@ interface RequestInterface
 
     public function getServer(): ServerContainer|HttpContainer|array;
 
+    public function getContent(): string|false;
+
+    public function getContentArray(): array;
+
     public function setCookies(array|CookieContainer $cookies): static;
 
     public function setHeader(string $name, string $value, bool $replace = false): void;
 
     public function setParams(HttpContainer|array $params): static;
 
-    public function fromParams($field = null, string $default = ""): array|string|\ArrayIterator|null;
+    public function fromParams($field = null, mixed $default = ""): array|string|\ArrayIterator|null;
 
-    public function fromQuery($field = null, string $default = ""): array|string|\ArrayIterator|null;
+    public function fromQuery($field = null, mixed $default = ""): array|string|\ArrayIterator|null;
 
-    public function fromPost($field = null, string $default = ""): array|string|\ArrayIterator|null;
+    public function fromPost($field = null, mixed $default = ""): array|string|\ArrayIterator|null;
 
-    public function fromServer($field = null, string $default = ""): array|string|\ArrayIterator|null;
+    public function fromServer($field = null, mixed $default = ""): array|string|\ArrayIterator|null;
 
+    public function fromFiles($field = null, mixed $default = ""): array|string|\ArrayIterator|null;
 }

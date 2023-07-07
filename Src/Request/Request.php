@@ -91,7 +91,7 @@ class Request implements SingletonInterface, RequestInterface
      * @param string $default
      * @return \ArrayIterator|string|array|null
      */
-    public function fromGlobals($field = null, $default = "")
+    public function fromGlobals($field = null, mixed $default = "")
     {
         return $this->fromContainer($this->getGlobals(), $field, $default);
     }
@@ -116,7 +116,7 @@ class Request implements SingletonInterface, RequestInterface
      * @param string $default
      * @return \ArrayIterator|string|array|null
      */
-    public function fromQuery($field = null, string $default = ""): array|string|\ArrayIterator|null
+    public function fromQuery($field = null, mixed $default = ""): array|string|\ArrayIterator|null
     {
         return $this->fromContainer($this->getQuery(), $field, $default);
     }
@@ -126,7 +126,7 @@ class Request implements SingletonInterface, RequestInterface
      * @param string $default
      * @return \ArrayIterator|string|array|null
      */
-    public function fromPost($field = null, $default = ""): array|string|\ArrayIterator|null
+    public function fromPost($field = null, mixed $default = ""): array|string|\ArrayIterator|null
     {
         return $this->fromContainer($this->getPost(), $field, $default);
     }
@@ -136,7 +136,7 @@ class Request implements SingletonInterface, RequestInterface
      * @param string $default
      * @return \ArrayIterator|string|array|null
      */
-    public function fromFiles($field = null, $default = ""): array|string|\ArrayIterator|null
+    public function fromFiles($field = null, mixed $default = ""): array|string|\ArrayIterator|null
     {
         return $this->fromContainer($this->getFiles(), $field, $default);
     }
@@ -146,7 +146,7 @@ class Request implements SingletonInterface, RequestInterface
      * @param string $default
      * @return \ArrayIterator|string|array|null
      */
-    public function fromCookies($field = null, $default = ""): array|string|\ArrayIterator|null
+    public function fromCookies($field = null, mixed $default = ""): array|string|\ArrayIterator|null
     {
         return $this->fromContainer($this->getCookies(), $field, $default);
     }
@@ -156,7 +156,7 @@ class Request implements SingletonInterface, RequestInterface
      * @param string $default
      * @return \ArrayIterator|string|array|null
      */
-    public function fromParams($field = null, $default = ""): array|string|\ArrayIterator|null
+    public function fromParams($field = null, mixed $default = ""): array|string|\ArrayIterator|null
     {
         return $this->fromContainer($this->getParams(), $field, $default);
     }
@@ -166,7 +166,7 @@ class Request implements SingletonInterface, RequestInterface
      * @param string $default
      * @return \ArrayIterator|string|array|null
      */
-    public function fromServer($field = null, $default = ""): array|string|\ArrayIterator|null
+    public function fromServer($field = null, mixed $default = ""): array|string|\ArrayIterator|null
     {
         return $this->fromContainer($this->getServer(), $field, $default);
     }
@@ -176,7 +176,7 @@ class Request implements SingletonInterface, RequestInterface
      * @param string $default
      * @return \ArrayIterator|string|array|null
      */
-    public function fromHeader($field = null, $default = ""): array|string|\ArrayIterator|null
+    public function fromHeader($field = null, mixed $default = ""): array|string|\ArrayIterator|null
     {
         return $this->fromContainer($this->getHeaders(), $field, $default);
     }
@@ -339,7 +339,7 @@ class Request implements SingletonInterface, RequestInterface
     /**
      * @return string
      */
-    public function getContent()
+    public function getContent(): string|false
     {
         return file_get_contents("php://input");
     }
@@ -349,7 +349,8 @@ class Request implements SingletonInterface, RequestInterface
      */
     public function getContentArray(): array
     {
-        return json_decode(file_get_contents("php://input"), true);
+        $content = $this->getContent();
+        return $content !== false ? json_decode($content, true) : [];
     }
 
     /**

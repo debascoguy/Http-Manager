@@ -78,6 +78,16 @@ class RequestFactory extends AbstractFactory implements RequestInterface
         return $this->getRequest()->getCookies();
     }
 
+    public function getContent(): string|false
+    {
+        return $this->getRequest()->getContent();
+    }
+
+    public function getContentArray(): array
+    {
+        return $this->getRequest()->getContentArray();
+    }
+
     public function setCookies(array|CookieContainer $cookies): static
     {
         return $this->getRequest()->setCookies($cookies);
@@ -98,25 +108,29 @@ class RequestFactory extends AbstractFactory implements RequestInterface
         return $this;
     }
 
-    public function fromParams($field = null, string $default = ""): array|string|\ArrayIterator|null
+    public function fromParams($field = null, mixed $default = ""): array|string|\ArrayIterator|null
     {
         return $this->getRequest()->fromParams($field, $default);
     }
 
-    public function fromQuery($field = null, string $default = ""): array|string|\ArrayIterator|null
+    public function fromQuery($field = null, mixed $default = ""): array|string|\ArrayIterator|null
     {
         return $this->getRequest()->fromQuery($field, $default);
     }
 
-    public function fromPost($field = null, string $default = ""): array|string|\ArrayIterator|null
+    public function fromPost($field = null, mixed $default = ""): array|string|\ArrayIterator|null
     {
         return $this->getRequest()->fromPost($field, $default);
     }
 
-    public function fromServer($field = null, string $default = ""): array|string|\ArrayIterator|null
+    public function fromServer($field = null, mixed $default = ""): array|string|\ArrayIterator|null
     {
         return $this->getRequest()->fromServer($field, $default);
     }
 
+    public function fromFiles($field = null, mixed $default = ""): array|string|\ArrayIterator|null
+    {
+        return $this->getRequest()->fromFiles($field, $default);
+    }
 
 }
