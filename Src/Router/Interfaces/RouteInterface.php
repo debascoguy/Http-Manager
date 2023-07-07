@@ -14,4 +14,6 @@ interface RouteInterface
     public function getCallable(): callable|array;
 
     public function getParams(): array;
+
+    public function isFound(): bool;
 }

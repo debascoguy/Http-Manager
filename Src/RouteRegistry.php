@@ -12,7 +12,7 @@ class RouteRegistry
 
     public function register(array|object|callable $classOrFunctionOrObject)
     {
-        $this->registryContainer[] = $classOrFunctionOrObject;
+        $this->routables[] = $classOrFunctionOrObject;
     }
 
     /**
@@ -20,7 +20,7 @@ class RouteRegistry
      */
     public function getRoutables(): array
     {
-        return $this->registryContainer;
+        return $this->routables;
     }
 
     /**
@@ -29,7 +29,7 @@ class RouteRegistry
      */
     public function setRoutables(array $routables): RouteRegistry
     {
-        $this->registryContainer = $routables;
+        $this->routables = $routables;
         return $this;
     }
 }
