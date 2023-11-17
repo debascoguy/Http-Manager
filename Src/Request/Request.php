@@ -22,7 +22,7 @@ class Request implements SingletonInterface, RequestInterface
         $params;
 
     /**
-     * @var array|HttpContainer
+     * @var array|HttpContainer|ServerContainer
      */
     protected $cookies,
         $server,
@@ -112,7 +112,7 @@ class Request implements SingletonInterface, RequestInterface
     }
 
     /**
-     * @param null $field
+     * @param string $field
      * @param string $default
      * @return \ArrayIterator|string|array|null
      */
@@ -122,7 +122,7 @@ class Request implements SingletonInterface, RequestInterface
     }
 
     /**
-     * @param null $field
+     * @param string $field
      * @param string $default
      * @return \ArrayIterator|string|array|null
      */
@@ -132,7 +132,7 @@ class Request implements SingletonInterface, RequestInterface
     }
 
     /**
-     * @param null $field
+     * @param string $field
      * @param string $default
      * @return \ArrayIterator|string|array|null
      */
@@ -142,7 +142,7 @@ class Request implements SingletonInterface, RequestInterface
     }
 
     /**
-     * @param null $field
+     * @param string $field
      * @param string $default
      * @return \ArrayIterator|string|array|null
      */
@@ -152,7 +152,7 @@ class Request implements SingletonInterface, RequestInterface
     }
 
     /**
-     * @param null $field
+     * @param string $field
      * @param string $default
      * @return \ArrayIterator|string|array|null
      */
@@ -162,7 +162,7 @@ class Request implements SingletonInterface, RequestInterface
     }
 
     /**
-     * @param null $field
+     * @param string $field
      * @param string $default
      * @return \ArrayIterator|string|array|null
      */
@@ -172,7 +172,7 @@ class Request implements SingletonInterface, RequestInterface
     }
 
     /**
-     * @param null $field
+     * @param string $field
      * @param string $default
      * @return \ArrayIterator|string|array|null
      */

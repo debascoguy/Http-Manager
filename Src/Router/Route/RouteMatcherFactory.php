@@ -30,7 +30,7 @@ class RouteMatcherFactory extends AbstractFactory implements RouteMatcherInterfa
      * @param RouterStoreInterface $httpRouter
      * @return RouteInterface
      */
-    public function match(RequestInterface $httpRequest, RouterStoreInterface $httpRouter): RouteInterface
+    public function match(RequestInterface $httpRequest, RouterStoreInterface $httpRouter): ?RouteInterface
     {
         return $this->routeMatcher->match($httpRequest, $httpRouter);
     }

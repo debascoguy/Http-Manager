@@ -102,6 +102,11 @@ class ResponseFactory extends AbstractFactory implements ResponseInterface
         return $this;
     }
 
+    public function getResponseCode(): int
+    {
+        return $this->getResponse()->getResponseCode();
+    }
+
     /**
      * @return ResponseInterface
      */

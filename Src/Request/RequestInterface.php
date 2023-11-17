@@ -36,7 +36,11 @@ interface RequestInterface
 
     public function fromPost($field = null, mixed $default = ""): array|string|\ArrayIterator|null;
 
+    public function fromCookies($field = null, mixed $default = ""): array|string|\ArrayIterator|null;
+
     public function fromServer($field = null, mixed $default = ""): array|string|\ArrayIterator|null;
+
+    public function fromHeader($field = null, mixed $default = ""): array|string|\ArrayIterator|null;
 
     public function fromFiles($field = null, mixed $default = ""): array|string|\ArrayIterator|null;
 }

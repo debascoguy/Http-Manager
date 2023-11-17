@@ -103,7 +103,7 @@ class ServerContainer extends HttpContainer
             } else if ($xHttpMethod == 'PUT') {
                 $method = 'PUT';
             } else {
-                throw new BaseException("Unexpected Header");
+                throw new \Exception("Unexpected Header");
             }
         }
         $this->setRequestMethod($method);
@@ -248,7 +248,8 @@ class ServerContainer extends HttpContainer
      */
     public function getLocationInfoByIp($ip = "")
     {
-        return LocationInfo::getInstance($ip);
+        // return LocationInfo::getInstance($ip);
+        return null;
     }
 
     /**

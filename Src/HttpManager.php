@@ -75,7 +75,7 @@ class HttpManager
      * @return Router\Interfaces\RouteInterface
      * @throws \Exception
      */
-    public function matchRequestRoutes(): Router\Interfaces\RouteInterface
+    public function matchRequestRoutes(): ?Router\Interfaces\RouteInterface
     {
         $this->boot();
         return $this->getHttpRouteMatcherFactory()->match(

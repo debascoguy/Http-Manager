@@ -123,9 +123,19 @@ class RequestFactory extends AbstractFactory implements RequestInterface
         return $this->getRequest()->fromPost($field, $default);
     }
 
+    public function fromCookies($field = null, mixed $default = ""): array|string|\ArrayIterator|null
+    {
+        return $this->getRequest()->fromCookies($field, $default);
+    }
+
     public function fromServer($field = null, mixed $default = ""): array|string|\ArrayIterator|null
     {
         return $this->getRequest()->fromServer($field, $default);
+    }
+
+    public function fromHeader($field = null, mixed $default = ""): array|string|\ArrayIterator|null
+    {
+        return $this->getRequest()->fromHeader($field, $default);
     }
 
     public function fromFiles($field = null, mixed $default = ""): array|string|\ArrayIterator|null

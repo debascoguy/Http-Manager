@@ -24,6 +24,8 @@ interface ResponseInterface
 
     public function setJson(array $data = []): static;
 
+    public function getResponseCode(): int;
+
     public function sendHeaders(): self;
 
     public function sendResponse(): void;
